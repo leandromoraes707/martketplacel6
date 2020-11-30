@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Editar Lojas</h1>
-<form action="{{route('admin.stores.update', ['store' => $store->id])}}" method="post">
+<form action="{{route('admin.stores.update', ['store' => $store->id])}}" method="post" enctype="multipart/form-data">
         @csrf
         @method("PUT")
 
@@ -18,11 +18,21 @@
             <label>Telefone </label>
             <input type="text" name="phone" class="form-control" value="{{$store->phone}}">
         </div>
+       
         <div class="form-group">
             <label>Celular</label>
             <input type="text" name="mobile_phone" class="form-control" value="{{$store->mobile_phone}}">
         </div>
+       
         <div class="form-group">
+            <label>Fotos do Produto</label>
+            <input type="file" name="logo" class="form-control" multiple>
+        </div>
+       
+        <div class="form-group">
+            <p>
+               <img src="{{asset('storage/'. $store->logo)}}" alt=""> 
+            </p>
             <label>Slug</label>
             <input type="text" name="slug" class="form-control" value="{{$store->slug}}">
         </div>

@@ -2,16 +2,27 @@
 
 @section('content')
     <h1>Criar Produto</h1>
-    <form action="{{route('admin.products.store')}}" method="post">
+    <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         
         <div class="form-group">
             <label>Nome Produto</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror">
+            @error('name')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
+
         <div class="form-group">
             <label>Descrição</label>
-            <input type="text" name="description" class="form-control">
+            <input type="text" name="description" class="form-control @error('description') is-invalid @enderror">
+            @error('description')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -21,21 +32,39 @@
 
         <div class="form-group">
             <label>Preço</label>
-            <input type="text" name="price" class="form-control">
+            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror">
+            @error('price')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
        
-    
+        <div class="form group">
+            <label>Categorias</label>
+            <select name="categories[]" id="" class="form-control" multiple>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        
+
+        <div class="form-group">
+            <label>Fotos do Produto</label>
+            <input type="file" name="photos[]" class="form-control" multiple>
+        </div>
+
         <div class="form-group">
             <label>Slug</label>
-            <input type="text" name="slug" class="form-control">
+            <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror">
+            @error('slug')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label>Lojas</label>
-            <select name="store" class="form-control">
-                @foreach($stores as $store)
-                    <option value="{{$store->id}}">{{$store->name}}</option>
-                @endforeach
-            </select> 
+        
         <div>
             <button type="submit" class="btn btn-lg btn-success">Criar Produto</button>
         </div>
