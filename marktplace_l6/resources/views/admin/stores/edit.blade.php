@@ -25,17 +25,14 @@
         </div>
        
         <div class="form-group">
+            <p>
+                <img src="{{asset('storage/'. $store->logo)}}" alt=""> 
+             </p>
             <label>Fotos do Produto</label>
             <input type="file" name="logo" class="form-control" multiple>
         </div>
        
-        <div class="form-group">
-            <p>
-               <img src="{{asset('storage/'. $store->logo)}}" alt=""> 
-            </p>
-            <label>Slug</label>
-            <input type="text" name="slug" class="form-control" value="{{$store->slug}}">
-        </div>
+       
         <div>
             <button type="submit" class="btn btn-lg btn-success">Atualizar Loja</button>
         </div>

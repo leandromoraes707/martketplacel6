@@ -1,12 +1,17 @@
 <?php
 
-//use Illuminate\Routing\Route;
 
-//use Illuminate\Routing\Route;
 
-//Route::get('/', function()->name('home');
 
-//use App\Http\Controllers\Admin\CategoryController;
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('product/{slug}', 'HomeController@single')->name('product.single');
+
+Route::prefix('cart')->name('cart.')->group(function(){
+       Route::get('/', 'CartController@index')->name('index');
+       Route::post('add','CartController@add')->name('add');
+       Route::get('remove/{slug}', 'CartController@remove')->name('remove');
+});
 
 Route::group(['middleware' => ['auth']], function() {
         Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function() {

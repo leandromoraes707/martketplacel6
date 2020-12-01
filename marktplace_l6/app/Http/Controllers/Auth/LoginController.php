@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/products';
+    protected $redirectTo = '/admin/stores';
 
     /**
      * Create a new controller instance.
@@ -37,4 +38,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    
 }
